@@ -1,29 +1,82 @@
-import { useMyHook } from './'
+import { useLocalStorage } from './'
 import { renderHook, act } from "@testing-library/react-hooks";
 
-// mock timer using jest
-jest.useFakeTimers();
+const SAMPLE_OBJECT = {
+    title: 'An article about the meaning of life',
+    body: 'Now I realize this was too ambitious and am gonna stop myself there.'
+}
 
-describe('useMyHook', () => {
-  it('updates every second', () => {
-    const { result } = renderHook(() => useMyHook());
+const SAMPLE_NUMBER = 1234567890
 
-    expect(result.current).toBe(0);
+const SAMPLE_STRING = 'Catch me outside'
 
-    // Fast-forward 1sec
-    act(() => {
-      jest.advanceTimersByTime(1000);
-    });
+describe('useLocalStorage', () => {
+    it('can save an object to local storage', () => {
+        const { result } = renderHook(() => (
+            useLocalStorage('draft', SAMPLE_OBJECT)
+        ));
 
-    // Check after total 1 sec
-    expect(result.current).toBe(1);
+        expect(result.current[0].title).toBe('An article about the meaning of life');
+    })
 
-    // Fast-forward 1 more sec
-    act(() => {
-      jest.advanceTimersByTime(1000);
-    });
+    it('can update an object from local storage', () => {
+        const { result } = renderHook(() => (
+            useLocalStorage('draft', SAMPLE_OBJECT)
+        ));
 
-    // Check after total 2 sec
-    expect(result.current).toBe(2);
-  })
+        expect(result.current[0].title).toBe('An article about the meaning of life');
+
+        act(() => {
+            result.current[1]({
+                ...result.current[0],
+                title: 'Changed title'
+            });
+        });
+
+        expect(result.current[0].title).toBe('Changed title');
+    })
+
+    it('can save a number to local storage', () => {
+        const { result } = renderHook(() => (
+            useLocalStorage('number', SAMPLE_NUMBER)
+        ));
+
+        expect(result.current[0]).toBe(SAMPLE_NUMBER);
+    })
+
+    it('can update a number from local storage', () => {
+        const { result } = renderHook(() => (
+            useLocalStorage('number', SAMPLE_NUMBER)
+        ));
+
+        expect(result.current[0]).toBe(SAMPLE_NUMBER);
+
+        act(() => {
+            result.current[1](SAMPLE_NUMBER * 2);
+        });
+
+        expect(result.current[0]).toBe(SAMPLE_NUMBER * 2);
+    })
+
+    it('can save a string to local storage', () => {
+        const { result } = renderHook(() => (
+            useLocalStorage('string', SAMPLE_STRING)
+        ));
+
+        expect(result.current[0]).toBe(SAMPLE_STRING);
+    })
+
+    it('can update a number from local storage', () => {
+        const { result } = renderHook(() => (
+            useLocalStorage('string', SAMPLE_STRING)
+        ));
+
+        expect(result.current[0]).toBe(SAMPLE_STRING);
+
+        act(() => {
+            result.current[1]('Nope.');
+        });
+
+        expect(result.current[0]).toBe('Nope.');
+    })
 })

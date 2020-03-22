@@ -1,21 +1,36 @@
-import * as React from 'react'
+import { useEffect, useState } from 'react'
 
-export const useMyHook = () => {
-  let [{
-    counter
-  }, setState] = React.useState({
-    counter: 0
-  })
+const isObject = (suspect) => typeof suspect == 'object'
+const isNumber = (suspect) => ! isNaN(suspect)
 
-  React.useEffect(() => {
-    let interval = window.setInterval(() => {
-      counter++
-      setState({counter})
-    }, 1000)
-    return () => {
-      window.clearInterval(interval)
-    }
-  }, [])
+const getType = (suspect) => {
+    if (isObject(suspect))
+        return 'object'
 
-  return counter
+    if (isNumber(suspect))
+        return 'number'
+
+    return 'string'
+}
+
+const get = (key, value) => {
+    if (getType(value) == 'object')
+        return JSON.parse(localStorage.getItem(key))
+
+    if (getType(value) == 'number')
+        return Number(localStorage.getItem(key))
+}
+
+const set = (key, value) => {
+    localStorage.setItem(key, getType(value) == 'object' ? JSON.stringify(value) : value)
+}
+
+export const useLocalStorage = (key, value) => {
+    const [getter, setter] = useState(get(key, value) || value)
+
+    useEffect(() => {
+        set(key, getter)
+    }, [getter])
+
+    return [getter, setter]
 }

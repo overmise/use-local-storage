@@ -7,28 +7,31 @@
 ## Install
 
 ```bash
-npm install --save use-local-storage
+npm install --save @overmise/use-local-storage
 ```
 
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React from 'react'
 
-import { useMyHook } from 'use-local-storage'
+import { useLocalStorage } from '@overmise/use-local-storage'
 
-const Example = () => {
-  const example = useMyHook()
-  return (
-    <div>{example}</div>
-  )
+const Form = () => {
+    const example = useMyHook()
+    const [draft, setDraft] = useLocalStorage('draft', {
+        title: 'An article about the meaning of life',
+        body: 'Now I realize this was too ambitious and am gonna stop myself there.'
+    })
+
+    return (
+        <form>
+            <input value={draft.title} onChange={(event) => setDraft({ ...draft, title: event.target.value })} />
+        </form>
+    )
 }
 ```
 
 ## License
 
 MIT © [benvilliere](https://github.com/benvilliere)
-
----
-
-This hook is created using [create-react-hook](https://github.com/hermanya/create-react-hook).
