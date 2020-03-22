@@ -18,7 +18,6 @@ import React from 'react'
 import { useLocalStorage } from '@overmise/use-local-storage'
 
 const Form = () => {
-    const example = useMyHook()
     const [draft, setDraft] = useLocalStorage('draft', {
         title: 'An article about the meaning of life',
         body: 'Now I realize this was too ambitious and am gonna stop myself there.'
