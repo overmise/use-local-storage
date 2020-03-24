@@ -82,7 +82,7 @@ describe('useLocalStorage', () => {
 
     it('can save data to local storage and clear itself', () => {
         const { result } = renderHook(() => (
-            useLocalStorage('string', SAMPLE_STRING)
+            useLocalStorage('clearmeup', SAMPLE_STRING)
         ))
 
         expect(result.current[0]).toBe(SAMPLE_STRING)
