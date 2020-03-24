@@ -1,4 +1,4 @@
-# @overmise/use-local-storage
+# useLocalStorage(key, value)
 
 > React Hook to help with using localStorage
 
@@ -16,6 +16,26 @@ npm install --save @overmise/use-local-storage
 
 ## Usage
 
+You should useLocalStorage() almost like you useState, the only difference is you must provide a key within which the data should be stored like so:
+
+```jsx
+const [username, setUsername] = useStorage('username', '')
+```
+From there on, you can use your state and it will automatically sync with localStorage:
+
+```jsx
+setUsername('Bob')
+```
+To unset values, simply null out by invoking the same method with a blank string:
+
+```jsx
+setUsername('')
+```
+
+## Example
+
+The following example component illustrates how this hooks works with objects, and how you could use it to store form data inside localStorage for later retrieval (this hook was extracted from a project that needed to do exactly this). 
+
 ```jsx
 import React from 'react'
 
@@ -30,15 +50,13 @@ const Form = () => {
     return (
         <form>
             <input value={draft.title} onChange={(event) => setDraft({ ...draft, title: event.target.value })} />
+            <textarea value={draft.body} onChange={(event) => setDraft({ ...draft, body: event.target.value })} />
         </form>
     )
 }
 ```
 
-## Roadmap
-
-- Add an example component to showcase how this thing works
-                 
+When you change values and reload the page, the values should have been persisted, hence what you typed should have been preserved and being displayed in the newly rendered page.   
 
 ## License
 
