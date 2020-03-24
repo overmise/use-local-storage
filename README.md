@@ -19,7 +19,7 @@ npm install --save @overmise/use-local-storage
 You should useLocalStorage() almost like you useState, the only difference is you must provide a key within which the data should be stored like so:
 
 ```jsx
-const [username, setUsername] = useStorage('username', null)
+const [username, setUsername] = useStorage('username', '')
 ```
 From there on, you can use your state and it will automatically sync with localStorage:
 
