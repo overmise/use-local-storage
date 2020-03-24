@@ -19,6 +19,8 @@ const get = (key, value) => {
 
     if (getType(value) == 'number')
         return Number(localStorage.getItem(key))
+
+    return localStorage.getItem(key)
 }
 
 const set = (key, value) => {
