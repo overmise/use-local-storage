@@ -1,4 +1,4 @@
-# @overmise/use-local-storage
+# useLocalStorage(key, value)
 
 > React Hook to help with using localStorage
 
