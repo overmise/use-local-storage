@@ -4,6 +4,10 @@
 
 [![NPM](https://img.shields.io/npm/v/use-local-storage.svg)](https://www.npmjs.com/package/use-local-storage) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+## Goal
+
+Hook the localStorage browser API in React so that you can use it like you'd useState, while supporting all data types inculding automatic JSON encoding/decoding.
+
 ## Install
 
 ```bash
@@ -30,6 +34,12 @@ const Form = () => {
     )
 }
 ```
+
+## Roadmap
+
+- Add a cleanup function that will allow to automatically clear storage by invoking localStorage.removeItem(key);
+- Add an example component to showcase how this thing works
+                 
 
 ## License
 
