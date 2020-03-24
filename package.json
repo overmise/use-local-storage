@@ -1,6 +1,6 @@
 {
     "name": "@overmise/use-local-storage",
-    "version": "0.1.1",
+    "version": "1.0.0",
     "description": "React Hook to help with using localStorage",
     "author": "benvilliere",
     "license": "MIT",
