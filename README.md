@@ -37,7 +37,6 @@ const Form = () => {
 
 ## Roadmap
 
-- Add a cleanup function that will allow to automatically clear storage by invoking localStorage.removeItem(key);
 - Add an example component to showcase how this thing works
                  
 
