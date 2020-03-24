@@ -16,6 +16,25 @@ npm install --save @overmise/use-local-storage
 
 ## Usage
 
+You should useLocalStorage() almost like you useState, the only difference is you must provide a key within which the data should be stored like so:
+
+```jsx
+const [username, setUsername] = useStorage('username', null)
+```
+From there on, you can use your state and it will automatically sync with localStorage:
+
+```jsx
+setUsername('Bob')
+console.log(username) // 'Bob'
+```
+To unset values, simply null out by invoking the same method with a blank string:
+
+```jsx
+setUsername('')
+```
+
+## Example
+
 ```jsx
 import React from 'react'
 
@@ -30,15 +49,11 @@ const Form = () => {
     return (
         <form>
             <input value={draft.title} onChange={(event) => setDraft({ ...draft, title: event.target.value })} />
+            <textarea value={draft.body} onChange={(event) => setDraft({ ...draft, body: event.target.value })} />
         </form>
     )
 }
-```
-
-## Roadmap
-
-- Add an example component to showcase how this thing works
-                 
+```               
 
 ## License
 
