@@ -25,7 +25,6 @@ From there on, you can use your state and it will automatically sync with localS
 
 ```jsx
 setUsername('Bob')
-console.log(username) // 'Bob'
 ```
 To unset values, simply null out by invoking the same method with a blank string:
 
@@ -34,6 +33,8 @@ setUsername('')
 ```
 
 ## Example
+
+The following example component illustrates how this hooks works with objects, and how you could use it to store form data inside localStorage for later retrieval (this hook was extracted from a project that needed to do exactly this). 
 
 ```jsx
 import React from 'react'
@@ -53,7 +54,9 @@ const Form = () => {
         </form>
     )
 }
-```               
+```
+
+When you change values and reload the page, the values should have been persisted, hence what you typed should have been preserved and being displayed in the newly rendered page.   
 
 ## License
 
