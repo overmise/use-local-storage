@@ -60,4 +60,4 @@ When you change values and reload the page, the values should have been persiste
 
 ## License
 
-MIT © [benvilliere](https://github.com/benvilliere)
+MIT ©
